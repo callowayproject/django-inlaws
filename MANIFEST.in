@@ -1,0 +1,9 @@
+recursive-include doc_src *
+recursive-include docs *
+
+recursive-include django-inlaws/media *
+recursive-include django-inlaws/templates *
+
+include LICENSE
+include README
+include *.txt
