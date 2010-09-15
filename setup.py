@@ -16,7 +16,7 @@ setup(
     author = 'Corey Oordt, Jose Soares, Justin Quick',
     author_email = 'webdev@washingtontimes.com',
     description = '',
-    long_description = read_file('README'),
+    long_description = read_file('README.rst'),
     packages = find_packages(),
     include_package_data = True,
     install_requires=read_file('requirements.txt'),
