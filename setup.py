@@ -12,10 +12,10 @@ def read_file(filename):
 setup(
     name = "django-inlaws",
     version = __import__('inlaws').get_version().replace(' ', '-'),
-    url = '',
+    url = 'http://github.com/washingtontimes/django-inlaws',
     author = 'Corey Oordt, Jose Soares, Justin Quick',
     author_email = 'webdev@washingtontimes.com',
-    description = '',
+    description = 'Shows related objects in the Django admin.',
     long_description = read_file('README.rst'),
     packages = find_packages(),
     include_package_data = True,
