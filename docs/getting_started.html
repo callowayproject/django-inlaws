@@ -1,0 +1,136 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; Django-InLaws v0.1.1beta1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.1beta1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Django-InLaws v0.1.1beta1 documentation" href="index.html" />
+    <link rel="next" title="Reference" href="reference/index.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+  </head>
+  <body>
+<div id="docstitle">
+	<p>Django-InLaws v0.1.1beta1 documentation</p>
+</div>
+<div id="header">
+	<div id="title"><h1>Getting Started</h1></div>
+	<ul id="headerButtons">
+		<li id="toc_button"><div class="headerButton"><a href="#">Table of Contents</a></div></li>
+		<li id="page_buttons">
+			<div class="headerButton"><a href="genindex.html" title="General Index" accesskey="I">index</a></div>
+			<div class="headerButton"><a href="reference/index.html" title="Reference" accesskey="N">next</a></div>
+			<div class="headerButton"><a href="installation.html" title="Installation" accesskey="P">previous</a></div>
+		</li>
+	</ul>
+</div>
+
+<div id="sphinxsidebar">
+  <div class="sphinxsidebarwrapper">
+	<ul><li class="toctree-l1"><a href="index.html">Main Page</a></li></ul>
+	<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-items-are-shown">What items are shown</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a></li>
+</ul>
+
+    <div id="searchbox" style="display: none">
+      
+        <form class="search" action="search.html" method="get">
+			<div class="search-wrapper">
+			<span class="search-left"></span>
+			<input class="prettysearch" type="text" name="q" size="18" />
+			<span class="search-right">&nbsp;</span>
+			</div>
+          <input type="submit" value="Search" class="searchbutton" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+        <p class="searchtip" style="font-size: 90%">
+        Enter search terms or a module, class or function name.
+        </p>
+    </div>
+    <script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+</div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Django-InLaws is a pluggable app that requires very little to get it working in your project.</p>
+<ol class="arabic">
+<li><p class="first">Add &#8220;inlaws&#8221; to your <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> setting in your project&#8217;s <tt class="docutils literal"><span class="pre">settings.py</span></tt> file.</p>
+</li>
+<li><p class="first">Create an &#8220;admin&#8221; directory in your project&#8217;s template directory.</p>
+<div class="highlight-python"><pre>MyProject
++- templates
+   +- admin</pre>
+</div>
+</li>
+<li><p class="first">Create a file called <tt class="docutils literal"><span class="pre">change_form.html</span></tt>.</p>
+<div class="highlight-python"><pre>MyProject
++- templates
+   +- admin
+      `- change_form.html</pre>
+</div>
+</li>
+<li><p class="first">The contents of the file should be:</p>
+<div class="highlight-python"><pre>{% extends "inlaws/change_form.html" %}</pre>
+</div>
+</li>
+</ol>
+<div class="section" id="what-items-are-shown">
+<h2>What items are shown<a class="headerlink" href="#what-items-are-shown" title="Permalink to this headline">¶</a></h2>
+<p>Several criteria must be met:</p>
+<ol class="arabic simple">
+<li>The model has a <tt class="docutils literal"><span class="pre">ForeignKey</span></tt>, <tt class="docutils literal"><span class="pre">ManyToManyField</span></tt>, or <tt class="docutils literal"><span class="pre">OneToOneField</span></tt> field in its model. For example <tt class="docutils literal"><span class="pre">django.contrib.comments.models.Comment</span></tt> has a <tt class="docutils literal"><span class="pre">ForeignKey</span></tt> related to <tt class="docutils literal"><span class="pre">User</span></tt>. Therefore <tt class="docutils literal"><span class="pre">Comment</span></tt> entries will be displayed on the appropriate <tt class="docutils literal"><span class="pre">User</span></tt>&#8216;s admin change form.</li>
+<li>The model has a registered <tt class="docutils literal"><span class="pre">ModelAdmin</span></tt> class. For example, <tt class="docutils literal"><span class="pre">django.contrib.admin.models.LogEntry</span></tt> has a <tt class="docutils literal"><span class="pre">ForeignKey</span></tt> relating to <tt class="docutils literal"><span class="pre">User</span></tt>, but does not have a <tt class="docutils literal"><span class="pre">ModelAdmin</span></tt> registered. Therefore you will not see any <tt class="docutils literal"><span class="pre">LogEntry</span></tt> items on any <tt class="docutils literal"><span class="pre">User</span></tt> change form.</li>
+<li>The model is not in the <a class="reference internal" href="reference/settings.html#admin-related-excludes"><em>ADMIN_RELATED_EXCLUDES</em></a> setting. This setting allows you to specifically exclude models from appearing, even in the first two criteria are met. <tt class="docutils literal"><span class="pre">ADMIN_RELATED_EXCLUDES</span></tt> is simply a list or tuple of strings in <tt class="docutils literal"><span class="pre">'appname.model'</span></tt> format.</li>
+</ol>
+</div>
+</div>
+
+
+          </div> 
+        </div>
+      </div>
+    <div class="footer">
+    <p>
+      &copy; Copyright 2010, The Washington Times.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.3.
+	</p>
+    </div>
+      <div class="clearer"></div>
+    </div>
+	<div id="breadcrumbs">
+		Getting Started
+		</ul>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="_static/toc.js"></script>
+  </body>
+</html>
