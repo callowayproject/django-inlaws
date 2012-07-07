@@ -1,16 +1,17 @@
+import datetime
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import permalink
 from django.contrib.auth.models import User
-from django.conf import settings
 
-import datetime
 
 class PublicManager(models.Manager):
     """Returns published posts that are not in the future."""
 
     def published(self):
         return self.get_query_set().filter(status__gte=2, publish__lte=datetime.datetime.now())
+
 
 class Post(models.Model):
     """Post model."""
@@ -28,14 +29,14 @@ class Post(models.Model):
     publish = models.DateTimeField(_('publish'), default=datetime.datetime.now)
     created = models.DateTimeField(_('created'), auto_now_add=True)
     modified = models.DateTimeField(_('modified'), auto_now=True)
-    
+
     objects = PublicManager()
-    
+
     class Meta:
         verbose_name = _('post')
         verbose_name_plural = _('posts')
-        db_table  = 'blog_posts'
-        ordering  = ('-publish',)
+        db_table = 'blog_posts'
+        ordering = ('-publish',)
         get_latest_by = 'publish'
 
     def __unicode__(self):
@@ -54,7 +55,7 @@ class Post(models.Model):
 class BlogRoll(models.Model):
     """Other blogs you follow."""
     name = models.CharField(max_length=100)
-    url = models.URLField(verify_exists=False)
+    url = models.URLField()
     sort_order = models.PositiveIntegerField(default=0)
 
     class Meta:
