@@ -1,29 +1,33 @@
 from django.conf.urls.defaults import patterns, url
 from blog.models import Post
 
-urlpatterns = patterns('django.views.generic',
+from django.views.generic.dates import (ArchiveIndexView, YearArchiveView,
+                                        MonthArchiveView, DayArchiveView,
+                                        DateDetailView)
+
+urlpatterns = patterns('',
     url(r'^(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
-        'date_based.object_detail',
+        DateDetailView.as_view(),
         {'queryset': Post.objects.published(), 'date_field': 'publish'},
         name='blog_detail'
     ),
     url(r'^(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{1,2})/$',
-        'date_based.archive_day',
+        DayArchiveView.as_view(),
         {'queryset': Post.objects.published(), 'date_field': 'publish'},
         name='blog_archive_day'
     ),
     url(r'^(?P<year>\d{4})/(?P<month>\w{3})/$',
-        'date_based.archive_month',
+        MonthArchiveView.as_view(),
         {'queryset': Post.objects.published(), 'date_field': 'publish'},
         name='blog_archive_month'
     ),
     url(r'^(?P<year>\d{4})/$',
-        'date_based.archive_year',
+        YearArchiveView.as_view(),
         {'queryset': Post.objects.published(), 'date_field': 'publish'},
         name='blog_archive_year'
     ),
     url(r'^$',
-        'list_detail.object_list',
+        ArchiveIndexView.as_view(),
         {'queryset': Post.objects.published()},
         name='blog_index'
     ),
