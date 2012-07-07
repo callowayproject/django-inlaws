@@ -2,7 +2,7 @@
 Getting Started
 ===============
 
-Django-InLaws is a pluggable app that requires very little to get it working in your project. 
+Django Inlaws is a pluggable app that requires very little to get it working in your project.
 
 1. Add "inlaws" to your ``INSTALLED_APPS`` setting in your project's ``settings.py`` file.
 

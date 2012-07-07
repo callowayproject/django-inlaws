@@ -11,7 +11,9 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import sys
+import os
+import datetime
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -39,15 +41,15 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Django-InLaws'
-copyright = u'2010, The Washington Times'
+project = u'Django Inlaws'
+copyright = u'%s, Calloway Project' % datetime.date.today().year
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = inlaws.get_version()
+version = inlaws.get_version(short=True)
 # The full version, including alpha/beta/rc tags.
 release = inlaws.get_version()
 
@@ -160,7 +162,7 @@ html_show_sourcelink = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'django-inlawsdoc'
+htmlhelp_basename = 'Django Inlawsdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -174,7 +176,7 @@ htmlhelp_basename = 'django-inlawsdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'app.tex', u'Django-InLaws Documentation',
+  ('index', 'app.tex', u'Django Inlaws Documentation',
    u'coordt', 'manual'),
 ]
 
