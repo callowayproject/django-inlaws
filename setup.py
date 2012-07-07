@@ -30,7 +30,7 @@ setup(
     author='Corey Oordt, Jose Soares, Justin Quick',
     author_email='coreyoordt@gmail.com',
     description=DESC,
-    long_description=read_file('README.rst'),
+    long_description=get_readme(),
     packages=find_packages(),
     include_package_data=True,
     install_requires=read_file('requirements.txt'),
